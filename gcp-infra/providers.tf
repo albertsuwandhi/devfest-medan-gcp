@@ -9,7 +9,7 @@ terraform {
 }
 
 provider "google" {
-  project = "ilt-3-session"
+  project = "gdg-medan-devfest"
   region  = "asia-southeast2"
   zone    = "asia-southeast2-a"
 }
