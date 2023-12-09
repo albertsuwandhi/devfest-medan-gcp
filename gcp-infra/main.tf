@@ -68,45 +68,45 @@ resource "google_compute_disk" "data_disk" {
 
 
 # Google Compute Engine
-# resource "google_compute_instance" "vm-01" {
-#   name                      = "vm-01"
-#   machine_type              = "e2-medium" # Try : micro, small, medium
-#   zone                      = var.compute_zone["zone-1"]
-#   allow_stopping_for_update = var.allow_stop_vm
+resource "google_compute_instance" "vm-01" {
+  name                      = "vm-01"
+  machine_type              = "e2-medium" # Try : micro, small, medium
+  zone                      = var.compute_zone["zone-1"]
+  allow_stopping_for_update = var.allow_stop_vm
 
-#   tags = ["allow-ssh-http-icmp"]
+  tags = ["allow-ssh-http-icmp"]
 
-#   # lifecycle {
-#   #   prevent_destroy = true
-#   # }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 
-#   boot_disk {
-#     initialize_params {
-#       image = data.google_compute_image.debian.self_link
-#     }
-#   }
+  boot_disk {
+    initialize_params {
+      image = data.google_compute_image.debian.self_link
+    }
+  }
 
-#   # Additional disk
-#   attached_disk {
-#     source = google_compute_disk.data_disk.id
-#   }
+  # Additional disk
+  attached_disk {
+    source = google_compute_disk.data_disk.id
+  }
 
-#   network_interface {
-#     network = "default"
+  network_interface {
+    network = "default"
 
-#     access_config {
-#       // Ephemeral public IP
-#     }
-#   }
+    access_config {
+      // Ephemeral public IP
+    }
+  }
 
-#   metadata_startup_script =  "sudo apt-get update; sudo apt-get install -y nginx; sudo systemctl start nginx" 
+  metadata_startup_script =  "sudo apt-get update; sudo apt-get install -y nginx; sudo systemctl start nginx" 
 
-#   # service_account {
-#   #   # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-#   #   email  = google_service_account.my_service_account.email
-#   #   scopes = ["cloud-platform"]
-#   # }
-# }
+  # service_account {
+  #   # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+  #   email  = google_service_account.my_service_account.email
+  #   scopes = ["cloud-platform"]
+  # }
+}
 
 # resource "google_compute_instance" "vm-02" {
 #   name                      = "vm-02"
