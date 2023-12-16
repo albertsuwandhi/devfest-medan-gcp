@@ -50,10 +50,10 @@ data "google_compute_image" "ubuntu" {
 
 # # Service Account
 
-# resource "google_service_account" "my_service_account" {
-#   account_id   = "devfest-sa"
-#   display_name = "devfest-sa"
-# }
+resource "google_service_account" "my_service_account" {
+  account_id   = "devfest-sa"
+  display_name = "devfest-sa"
+}
 
 # Persistent Disk
 resource "google_compute_disk" "data_disk" {
@@ -110,35 +110,35 @@ resource "google_compute_instance" "vm-01" {
 #   # }
 # }
 
-# resource "google_compute_instance" "vm-02" {
-#   name                      = "vm-02"
-#   machine_type              = "e2-small"
-#   zone                      = var.compute_zone["zone-2"]
-#   allow_stopping_for_update = var.allow_stop_vm
+resource "google_compute_instance" "vm-02" {
+  name                      = "vm-02"
+  machine_type              = "e2-small"
+  zone                      = var.compute_zone["zone-2"]
+  allow_stopping_for_update = var.allow_stop_vm
 
 
-#   boot_disk {
-#     initialize_params {
-#       image = data.google_compute_image.ubuntu.self_link
-#     }
-#   }
+  boot_disk {
+    initialize_params {
+      image = data.google_compute_image.ubuntu.self_link
+    }
+  }
 
-#   network_interface {
-#     network = "default"
+  network_interface {
+    network = "default"
 
-#     access_config {
-#       // Ephemeral public IP
-#     }
-#   }
+    access_config {
+      // Ephemeral public IP
+    }
+  }
 
-#   #   metadata_startup_script = "echo Devfest-Medan > /DevFest.txt"
+  #   metadata_startup_script = "echo Devfest-Medan > /DevFest.txt"
 
-#   service_account {
-#     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-#     email  = google_service_account.my_service_account.email
-#     scopes = ["cloud-platform"]
-#   }
-# }
+  service_account {
+    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    email  = google_service_account.my_service_account.email
+    scopes = ["cloud-platform"]
+  }
+}
 
 
 # Infracost : 
