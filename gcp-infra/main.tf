@@ -100,7 +100,7 @@ resource "google_compute_instance" "vm-01" {
       // Ephemeral public IP
     }
   }
-}
+
   metadata_startup_script =  "sudo apt-get update; sudo apt-get install -y nginx; sudo systemctl start nginx" 
 
   # service_account {
@@ -109,6 +109,7 @@ resource "google_compute_instance" "vm-01" {
   #   scopes = ["cloud-platform"]
   # }
 }
+
 
 # resource "google_compute_instance" "vm-02" {
 #   name                      = "vm-02"
